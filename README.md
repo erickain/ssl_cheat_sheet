@@ -75,6 +75,16 @@ openssl pkcs12 -export -out sslcert.pfx -inkey key.pem -in sslcert.pem
 openssl pkcs12 -export -out sslcert.pfx -inkey key.pem -in sslcert.pem -chain cacert.pem
 ```
 
+#### Extract Cert and Key from PFX 
+```bash
+openssl pkcs12 -in [certificate.pfx] -nocerts -out [keyfile-encrypted.key]
+openssl pkcs12 -in [certificate.pfx] -clcerts -nokeys -out [certificate.crt]
+```
+### Remove the passphrase from the private key
+```bash
+openssl rsa -in [keyfile-encrypted.key] -out [keyfile-decrypted.key]
+```
+
 #### Create CSR using an existing private key
 ```bash
 openssl req -out certificate.csr -key existing.key -new
